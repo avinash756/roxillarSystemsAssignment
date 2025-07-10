@@ -49,6 +49,12 @@ class FilterComponent extends Component {
           >
             Store Register
           </button>
+          <button
+            className={selected === "dashboard" ? "navBtn activeBtn" : "navBtn"}
+            onClick={() => onSelect("dashboard")}
+          >
+            Dashboard
+          </button>
         </div>
         <div className="navBottom">
           <button className="logoutButton" onClick={this.handleLogout}>

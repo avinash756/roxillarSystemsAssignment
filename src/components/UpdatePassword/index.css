@@ -41,3 +41,11 @@
   color: red;
   margin-top: 10px;
 }
+
+.passwordUpdateMainContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+    
+}

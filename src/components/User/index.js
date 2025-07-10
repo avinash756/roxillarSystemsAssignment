@@ -1,7 +1,7 @@
 import { Component } from "react";
 import UpdatePassword from "../UpdatePassword";
 import FilterComponent from "../FilterComponent";
-import ListStores from "../ListStores";
+import StoreList from "../ListStores";
 import "./index.css";
 
 class User extends Component {
@@ -17,7 +17,7 @@ class User extends Component {
     const { selectedOption } = this.state;
 
     if (selectedOption === "update") return <UpdatePassword />;
-    if (selectedOption === "store") return <ListStores />;
+    if (selectedOption === "store") return <StoreList />;
   };
 
   render() {

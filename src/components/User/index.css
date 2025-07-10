@@ -3,5 +3,11 @@
   flex-direction: row;
   min-height: 100vh;
   min-width: 100vw;
-  background-color: blue;
+}
+
+.contentArea {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,10 +1,40 @@
 import { Component } from "react";
+import FilterComponent from "../FilterComponent";
+import UpdatePassword from "../UpdatePassword";
+import "./index.css";
+import Dashboard from "../Dashboard";
+import StoreList from "../ListStores";
 
-class Store extends Component{
+class Store extends Component {
+  state = {
+    selectedOption: "update",
+  };
 
-    render(){
-        return <h1>Store</h1>
-    }
+  handleSelectOption = (option) => {
+    this.setState({ selectedOption: option });
+  };
+
+  renderContent = () => {
+    const { selectedOption } = this.state;
+
+    if (selectedOption === "update") return <UpdatePassword />;
+    if (selectedOption === "store") return <StoreList />;
+    if (selectedOption === "dashboard") return <Dashboard />;
+  };
+
+  render() {
+    const { selectedOption } = this.state;
+    return (
+      <div className="StoreContainer">
+        <FilterComponent
+          selected={selectedOption}
+          onSelect={this.handleSelectOption}
+        />
+
+        <div className="contentArea">{this.renderContent()}</div>
+      </div>
+    );
+  }
 }
 
-export default Store
+export default Store;
