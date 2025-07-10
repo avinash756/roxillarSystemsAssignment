@@ -1,0 +1,7 @@
+.UserContainer {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: blue;
+}
