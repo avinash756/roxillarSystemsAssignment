@@ -1,0 +1,72 @@
+.admin-container {
+  padding: 20px;
+  font-family: Arial;
+  height: 100vh;
+  flex-grow: 1;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logout-btn {
+  padding: 8px 12px;
+  background: #c0392b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.tabs {
+  margin: 20px 0;
+}
+
+.tabs button {
+  padding: 8px 16px;
+  margin-right: 8px;
+  border: none;
+  cursor: pointer;
+  background-color: #eee;
+}
+
+.tabs button.active {
+  background-color: #3498db;
+  color: white;
+}
+
+.filter-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.table-wrapper {
+  overflow-y: scroll;
+  padding: 10px;
+  height: 74vh;
+  width: 68vw;
+  overflow-x: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #f1f1f1;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}

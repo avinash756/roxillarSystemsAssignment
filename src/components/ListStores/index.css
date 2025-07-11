@@ -14,10 +14,11 @@
   display: flex;
   flex-wrap: wrap;
   overflow-y: hidden;
-  height: 90vh;
+  height: 80vh;
   overflow-y: scroll;
   gap: 20px;
   justify-content: center;
+  scrollbar-width: none; /* Firefox */
   padding: 20px;
 }
 .no-store-message {

@@ -2,8 +2,7 @@ import { Component } from "react";
 import FilterComponent from "../FilterComponent";
 import UpdatePassword from "../UpdatePassword";
 import "./index.css";
-import Dashboard from "../Dashboard";
-import StoreList from "../ListStores";
+import Dashboard from "../ShopOwnerDashboard";
 
 class Store extends Component {
   state = {
@@ -18,7 +17,6 @@ class Store extends Component {
     const { selectedOption } = this.state;
 
     if (selectedOption === "update") return <UpdatePassword />;
-    if (selectedOption === "store") return <StoreList />;
     if (selectedOption === "dashboard") return <Dashboard />;
   };
 
