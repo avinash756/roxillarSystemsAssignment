@@ -3,7 +3,6 @@ import "./index.css";
 
 class AdminDashboard extends Component {
   state = {
-    activeTab: "stores",
     allStores: [],
     allUsers: [],
     filterText: "",
@@ -17,10 +16,10 @@ class AdminDashboard extends Component {
     const token = localStorage.getItem("jwtToken");
     try {
       const [storesRes, usersRes] = await Promise.all([
-        fetch("http://localhost:5000/storesRating", {
+        fetch("https://roxillerbackend-hfbh.onrender.com/storesRating", {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        fetch("http://localhost:5000/users", {
+        fetch("https://roxillerbackend-hfbh.onrender.com/users", {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ]);
@@ -28,49 +27,28 @@ class AdminDashboard extends Component {
       const users = await usersRes.json();
       this.setState({ allStores: stores, allUsers: users });
     } catch (error) {
-      console.error("Error fetching admin data:", error);
+      console.error("Error fetching data:", error);
     }
-  };
-
-  handleTabChange = (tab) => {
-    this.setState({ activeTab: tab });
   };
 
   handleFilterChange = (e) => {
     this.setState({ filterText: e.target.value });
   };
 
-  logout = () => {
-    localStorage.removeItem("jwtToken");
-    window.location.href = "/login";
-  };
-
-  filterData = (data, type) => {
-    const { filterText } = this.state;
+  filterStores = () => {
+    const { allStores, filterText } = this.state;
     const lowerText = filterText.toLowerCase();
 
-    return data.filter((item) => {
-      if (type === "stores") {
-        return (
-          (item.shop_name || "").toLowerCase().includes(lowerText) ||
-          (item.shop_email || "").toLowerCase().includes(lowerText) ||
-          (item.shop_address || "").toLowerCase().includes(lowerText)
-        );
-      } else if (type === "users") {
-        return (
-          (item.username || "").toLowerCase().includes(lowerText) ||
-          (item.email || "").toLowerCase().includes(lowerText) ||
-          (item.address || "").toLowerCase().includes(lowerText) ||
-          (item.role || "").toLowerCase().includes(lowerText)
-        );
-      }
-      return false;
-    });
+    return allStores.filter(
+      (store) =>
+        (store.shop_name || "").toLowerCase().includes(lowerText) ||
+        (store.shop_email || "").toLowerCase().includes(lowerText) ||
+        (store.shop_address || "").toLowerCase().includes(lowerText)
+    );
   };
 
   renderStores = () => {
-    const { allStores } = this.state;
-    const filtered = this.filterData(allStores, "stores");
+    const filtered = this.filterStores();
 
     return (
       <table>
@@ -96,69 +74,35 @@ class AdminDashboard extends Component {
     );
   };
 
-  renderUsers = () => {
-    const { allUsers } = this.state;
-    const filtered = this.filterData(allUsers, "users");
-    return (
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th>Role</th>
-            <th>Rating (If Owner)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filtered.map((user) => (
-            <tr key={user.id}>
-              <td>{user.username}</td>
-              <td>{user.email}</td>
-              <td>{user.address}</td>
-              <td>{user.role}</td>
-              <td>{user.role === "shopowner" ? user.rating : "-"}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    );
-  };
-
   render() {
-    const { activeTab, filterText } = this.state;
+    const { filterText, allStores, allUsers } = this.state;
+
     return (
       <div className="admin-container">
         <div className="admin-header">
           <h2>Admin Dashboard</h2>
         </div>
 
-        <div className="tabs">
-          <button
-            className={activeTab === "stores" ? "active" : ""}
-            onClick={() => this.handleTabChange("stores")}
-          >
-            Stores
-          </button>
-          <button
-            className={activeTab === "users" ? "active" : ""}
-            onClick={() => this.handleTabChange("users")}
-          >
-            Users
-          </button>
+        <div className="dashboard-cards">
+          <div className="dashboard-card">
+            <h3>Total Stores</h3>
+            <p>{allStores.length}</p>
+          </div>
+          <div className="dashboard-card">
+            <h3>Total Users</h3>
+            <p>{allUsers.length}</p>
+          </div>
         </div>
 
         <input
           type="text"
-          placeholder="Filter by name, email, address or role"
+          placeholder="Filter by name, email or address"
           value={filterText}
           onChange={this.handleFilterChange}
           className="filter-input"
         />
 
-        <div className="table-wrapper">
-          {activeTab === "stores" ? this.renderStores() : this.renderUsers()}
-        </div>
+        <div className="table-wrapper">{this.renderStores()}</div>
       </div>
     );
   }

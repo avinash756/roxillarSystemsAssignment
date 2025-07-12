@@ -74,11 +74,14 @@ class Register extends Component {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password, address, role }),
-      });
+      const response = await fetch(
+        "https://roxillerbackend-hfbh.onrender.com/register",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, password, address, role }),
+        }
+      );
 
       const data = await response.json();
 
@@ -107,7 +110,6 @@ class Register extends Component {
       password,
       confirmPassword,
       address,
-      role,
       error,
       redirectToLogin,
       passwordRules,
@@ -198,7 +200,7 @@ class Register extends Component {
                   })
                 }
               >
-                {showConfirmPassword ? <FaEye/> : <FaEyeSlash />}
+                {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
               </span>
             </div>
 
@@ -210,18 +212,15 @@ class Register extends Component {
               required
             />
 
-            <label>Role</label>
-            <select name="role" value={role} onChange={this.handleChange}>
-              <option value="admin">Admin</option>
-              <option value="user">User</option>
-              <option value="storeowner">Store Owner</option>
-            </select>
+            <input type="hidden" name="role" value="user" />
 
             <button className="login-button" type="submit">
               Register
             </button>
             <Link to="/login">
-            <p className="navigateRegisterRoute">already Registered? Please Login...</p>
+              <p className="navigateRegisterRoute">
+                already Registered? Please Login...
+              </p>
             </Link>
           </form>
         </div>

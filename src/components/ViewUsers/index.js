@@ -14,9 +14,12 @@ class ViewUsers extends Component {
   fetchUsers = async () => {
     const token = localStorage.getItem("jwtToken");
     try {
-      const response = await fetch("http://localhost:5000/users", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await fetch(
+        "https://roxillerbackend-hfbh.onrender.com/users",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       const users = await response.json();
       this.setState({ allUsers: users });
     } catch (error) {
@@ -32,11 +35,12 @@ class ViewUsers extends Component {
     const { allUsers, filterText } = this.state;
     const lowerText = filterText.toLowerCase();
 
-    return allUsers.filter((user) =>
-      (user.username || "").toLowerCase().includes(lowerText) ||
-      (user.email || "").toLowerCase().includes(lowerText) ||
-      (user.address || "").toLowerCase().includes(lowerText) ||
-      (user.role || "").toLowerCase().includes(lowerText)
+    return allUsers.filter(
+      (user) =>
+        (user.username || "").toLowerCase().includes(lowerText) ||
+        (user.email || "").toLowerCase().includes(lowerText) ||
+        (user.address || "").toLowerCase().includes(lowerText) ||
+        (user.role || "").toLowerCase().includes(lowerText)
     );
   };
 

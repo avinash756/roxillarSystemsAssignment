@@ -90,6 +90,14 @@ class FilterComponent extends Component {
               </button>
               <button
                 className={
+                  selected === "addStoreOwner" ? "navBtn activeBtn" : "navBtn"
+                }
+                onClick={() => onSelect("addStoreOwner")}
+              >
+                Add StoreOwner
+              </button>
+              <button
+                className={
                   selected === "viewUsers" ? "navBtn activeBtn" : "navBtn"
                 }
                 onClick={() => onSelect("viewUsers")}

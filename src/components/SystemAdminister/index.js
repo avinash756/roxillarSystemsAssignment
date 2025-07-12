@@ -2,6 +2,7 @@ import { Component } from "react";
 import AdminDashboard from "../AdminDashboard";
 import FilterComponent from "../FilterComponent";
 import AddUser from "../AddUser";
+import AddStoreOwner from "../AddStoreOwner";
 import "./index.css";
 import AddAdmin from "../AddAdmin";
 import ViewUsers from "../ViewUsers";
@@ -24,6 +25,7 @@ class SystemAdministator extends Component {
     if (selected === "addAdmin") return <AddAdmin />;
     if (selected === "viewUsers") return <ViewUsers />;
     if (selected === "addStores") return <AddStores />;
+    if (selected==="addStoreOwner") return <AddStoreOwner/>
   }
 
   render() {

@@ -10,7 +10,7 @@ class Dashboard extends Component {
     const token = localStorage.getItem("jwtToken");
     try {
       const response = await fetch(
-        "http://localhost:5000/owner/stores/ratings",
+        "https://roxillerbackend-hfbh.onrender.com/owner/stores/ratings",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -30,30 +30,30 @@ class Dashboard extends Component {
 
   render() {
     const { stores } = this.state;
-    console.log(stores)
+    console.log(stores);
 
     return (
-      <div className="dashboard-main-container">
-        <h2>Your Store Dashboard</h2>
-        <div className="dashboard-container">
+      <div className="dashboard-wrapper">
+        <h2 className="dashboard-title">Your Store Dashboard</h2>
+        <div className="cards-grid">
           {stores.map((store) => (
-            <div key={store.store_id} className="dashboard-card">
-              <h3>{store.shop_name}</h3>
-              <p>📍 {store.shop_address}</p>
-              <p>
+            <div key={store.store_id} className="store-card">
+              <h3 className="store-title">{store.shop_name}</h3>
+              <p className="store-address">📍 {store.shop_address}</p>
+              <p className="store-rating">
                 ⭐ Average Rating: {Number(store.average_rating).toFixed(1)}
               </p>
               {store.user_ratings.length > 0 ? (
-                <>
+                <div className="user-rating-section">
                   <h4>Ratings by Users:</h4>
-                  <ul>
+                  <ul className="user-rating-list">
                     {store.user_ratings.map((user, index) => (
                       <li key={index}>
                         👤 {user.username}: {user.rating} ⭐
                       </li>
                     ))}
                   </ul>
-                </>
+                </div>
               ) : null}
             </div>
           ))}

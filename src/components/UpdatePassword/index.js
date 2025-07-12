@@ -43,7 +43,7 @@ class UpdatePassword extends Component {
     try {
       const token = localStorage.getItem("jwtToken");
 
-      const response = await fetch("http://localhost:5000/update-password", {
+      const response = await fetch("https://roxillerbackend-hfbh.onrender.com/update-password", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

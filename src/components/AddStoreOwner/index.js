@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import './index.css';
+import "./index.css";
 
-class AddAdmin extends Component {
+class AddStoreOwner extends Component {
   state = {
     name: "",
     email: "",
@@ -25,27 +25,37 @@ class AddAdmin extends Component {
     const { name, email, password, address } = this.state;
 
     try {
-      const response = await fetch("https://roxillerbackend-hfbh.onrender.com/register-admin", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, email, password, address }),
-      });
+      const response = await fetch(
+        "https://roxillerbackend-hfbh.onrender.com/register-storeowner",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, email, password, address }),
+        }
+      );
 
       const text = await response.text();
-      this.setState({ message: text, name: "", email: "", password: "", address: "" });
+      this.setState({
+        message: text,
+        name: "",
+        email: "",
+        password: "",
+        address: "",
+      });
     } catch (error) {
       this.setState({ message: "Something went wrong." });
     }
   };
 
   render() {
-    const { name, email, password, address, message, showPassword } = this.state;
+    const { name, email, password, address, message, showPassword } =
+      this.state;
 
     return (
       <div className="user-form">
-        <h2>Register Admin</h2>
+        <h2>Register Store Owner</h2>
         <form onSubmit={this.handleSubmit}>
           <input
             name="name"
@@ -71,8 +81,11 @@ class AddAdmin extends Component {
               onChange={this.handleChange}
               required
             />
-            <span className="toggle-password" onClick={this.togglePasswordVisibility}>
-              {showPassword ? <FaEye/> : <FaEyeSlash />}
+            <span
+              className="toggle-password"
+              onClick={this.togglePasswordVisibility}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
           </div>
           <input
@@ -82,7 +95,7 @@ class AddAdmin extends Component {
             onChange={this.handleChange}
             required
           />
-          <button type="submit">Register Admin</button>
+          <button type="submit">Register Store Owner</button>
         </form>
         <p>{message}</p>
       </div>
@@ -90,4 +103,4 @@ class AddAdmin extends Component {
   }
 }
 
-export default AddAdmin;
+export default AddStoreOwner;

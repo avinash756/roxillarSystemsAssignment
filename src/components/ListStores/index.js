@@ -17,7 +17,9 @@ class StoreList extends Component {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/stores?search=${encodeURIComponent(search)}`,
+        `https://roxillerbackend-hfbh.onrender.com/stores?search=${encodeURIComponent(
+          search
+        )}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -41,7 +43,7 @@ class StoreList extends Component {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/stores/${storeId}/rate`,
+        `https://roxillerbackend-hfbh.onrender.com/stores/${storeId}/rate`,
         {
           method: "POST",
           headers: {

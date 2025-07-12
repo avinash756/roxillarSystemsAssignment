@@ -1,0 +1,72 @@
+.user-form {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 30px 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.user-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.user-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.user-form input {
+  padding: 12px 14px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.user-form input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
+  outline: none;
+}
+
+.user-form button {
+  padding: 12px;
+  font-size: 16px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.user-form button:hover {
+  background-color: #357bd8;
+}
+
+.user-form p {
+  margin-top: 15px;
+  text-align: center;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .user-form {
+    margin: 20px;
+    padding: 20px 15px;
+  }
+
+  .user-form input,
+  .user-form button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}

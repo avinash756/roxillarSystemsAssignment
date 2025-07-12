@@ -20,7 +20,7 @@ class AddStore extends Component {
   fetchOwners = async () => {
     const token = localStorage.getItem("jwtToken");
     try {
-      const res = await fetch("http://localhost:5000/store-owners", {
+      const res = await fetch("https://roxillerbackend-hfbh.onrender.com/store-owners", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -59,7 +59,7 @@ class AddStore extends Component {
     if (shop_image) formData.append("shop_image", shop_image);
 
     try {
-      const res = await fetch("http://localhost:5000/stores", {
+      const res = await fetch("https://roxillerbackend-hfbh.onrender.com/stores", {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
         body: formData,
