@@ -6,6 +6,7 @@ class AdminDashboard extends Component {
     allStores: [],
     allUsers: [],
     filterText: "",
+    loading: true,
   };
 
   componentDidMount() {
@@ -25,9 +26,10 @@ class AdminDashboard extends Component {
       ]);
       const stores = await storesRes.json();
       const users = await usersRes.json();
-      this.setState({ allStores: stores, allUsers: users });
+      this.setState({ allStores: stores, allUsers: users, loading: false });
     } catch (error) {
       console.error("Error fetching data:", error);
+      this.setState({ loading: true });
     }
   };
 
